@@ -72,13 +72,19 @@
           break;
       }
 
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        document.getElementById("resultado").innerText = `Resultado: ${data.resultado}`;
-      } catch (error) {
-        document.getElementById("resultado").innerText = `Erro: ${error.message}`;
-      }
+    try {
+  const res = await fetch(url);
+  const data = await res.json();
+
+  if (data.error) {
+    document.getElementById("resultado").innerText = `Erro: ${data.error}`;
+  } else {
+    document.getElementById("resultado").innerText = `Resultado: ${data.resultado}`;
+  }
+} catch (error) {
+  document.getElementById("resultado").innerText = `Erro: ${error.message}`;
+}
+
     }
   </script>
 </body>
